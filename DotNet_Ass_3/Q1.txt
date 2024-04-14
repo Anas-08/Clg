@@ -1,0 +1,242 @@
+// with rtf
+using System;
+using System.IO;
+using System.Windows.Forms;
+
+namespace notepad
+{
+    public partial class Form1 : Form
+    {
+        // for save and save as
+        private bool isFileAlreadySaved;
+        private bool isFileUpdated;
+        private string currentFileName;
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // initialize variable
+            isFileAlreadySaved = false;
+            isFileUpdated = false;
+            currentFileName = "";
+        }
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            isFileUpdated = true;
+            undoToolStripMenuItem.Enabled = true;
+            // redoToolStripMenuItem.Enabled = true;
+        }
+
+
+        // help -> about notepad
+        private void aboutNotepadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Notepad created in c# for practice", "Notepad", MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
+
+        // File -> Exit
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        // File -> New
+        // rich textbox clear
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //rich.Clear();
+            if (isFileUpdated)
+            {
+                DialogResult result = MessageBox.Show("Do you want to save your changes ?", "File Save", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        save();
+                        clrscr();
+                        break;
+                    case DialogResult.No:
+                        clrscr();
+                        break;
+                }
+            }
+            else {
+                clrscr();
+            }
+            undoToolStripMenuItem.Enabled = false;
+            redoToolStripMenuItem.Enabled = false;
+
+        }
+
+        // File -> Open
+        // 
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileOpen = new OpenFileDialog();
+            fileOpen.Filter = "Text Documents(*.txt) | *.txt";
+            //fileOpen.Filter = "Text Documents(*.txt) | *.txt | Rich Text Document(*.rtf) | *.rtf";
+
+            DialogResult openFileResult = fileOpen.ShowDialog();
+
+            // to open the text in notepad
+            if(openFileResult == DialogResult.OK){
+                // check file is txt
+                if (Path.GetExtension(fileOpen.FileName) == ".txt")
+                {
+                    // loadfile in notepad
+                    rich.LoadFile(fileOpen.FileName, RichTextBoxStreamType.PlainText);
+                } 
+
+                //if(Path.GetExtension(fileOpen.FileName) == ".rtf"){
+                //    // loadfile in notepad
+                //    rich.LoadFile(fileOpen.FileName, RichTextBoxStreamType.PlainText);
+                //}
+                this.Text = Path.GetFileName(fileOpen.FileName) + " -Notepad";
+
+                //
+                isFileAlreadySaved = true;
+                isFileUpdated = false;
+                currentFileName = fileOpen.FileName;
+            }
+            undoToolStripMenuItem.Enabled = false;
+            redoToolStripMenuItem.Enabled = false;
+        }
+
+        // File -> save as
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveASMethod();
+        }
+        private void saveASMethod() {
+            SaveFileDialog saveasFile = new SaveFileDialog();
+            saveasFile.Filter = "Text Documents(*.txt) | *.txt";
+            //saveasFile.Filter = "Text Documents(*.txt) | *.txt | Rich Text Document(*.rtf) | *.rtf";
+
+            DialogResult saveAsResult = saveasFile.ShowDialog();
+
+            // to open and save the text in notepad
+            if (saveAsResult == DialogResult.OK)
+            {
+                // check file is txt
+                if (Path.GetExtension(saveasFile.FileName) == ".txt")
+                {
+                    // loadfile in notepad
+                    rich.SaveFile(saveasFile.FileName, RichTextBoxStreamType.PlainText);
+                }
+
+                //if (Path.GetExtension(saveasFile.FileName) == ".rtf")
+                //{
+                //    // loadfile in notepad
+                //    rich.SaveFile(saveasFile.FileName, RichTextBoxStreamType.PlainText);
+                //}
+                this.Text = Path.GetFileName(saveasFile.FileName) + " -Notepad";
+
+                //
+                isFileAlreadySaved = true;
+                isFileUpdated = false;
+                currentFileName = saveasFile.FileName;
+            }
+        }
+
+
+
+        // File -> save 
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            save();
+        }
+
+        private void save() { 
+            if (isFileAlreadySaved)
+            {
+                // check file is txt
+                if (Path.GetExtension(currentFileName) == ".txt")
+                {
+                    // loadfile in notepad
+                    rich.SaveFile(currentFileName, RichTextBoxStreamType.PlainText);
+                }
+
+                //if (Path.GetExtension(currentFileName) == ".rtf")
+                //{
+                //    // loadfile in notepad
+                //    rich.SaveFile(currentFileName, RichTextBoxStreamType.PlainText);
+                //}
+                isFileUpdated = false;
+            }
+            else {
+                if(isFileUpdated){
+                    saveASMethod();
+                }else{
+                    clrscr();
+                }   
+            }
+        }
+
+        private void clrscr() {
+            rich.Clear();
+            isFileUpdated = false;
+            this.Text = "Notepad";
+        }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rich.Undo();
+            undoToolStripMenuItem.Enabled = false;
+            redoToolStripMenuItem.Enabled = true;
+        }
+
+        private void redoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rich.Redo();
+            undoToolStripMenuItem.Enabled = true;
+            redoToolStripMenuItem.Enabled = false;
+        }
+
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rich.SelectAll();
+        }
+
+        private void fontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FontDialog font = new FontDialog();
+            DialogResult fontResult = font.ShowDialog();
+
+            if(fontResult == DialogResult.OK){
+                rich.SelectionFont = font.Font;
+            }
+        }
+
+        private void dateTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rich.SelectedText = DateTime.Now.ToString();
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rich.Copy();
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rich.Cut();
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rich.Paste();
+        }
+       
+
+    }
+}

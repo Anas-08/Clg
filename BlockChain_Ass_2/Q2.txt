@@ -1,0 +1,56 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Hotel {
+  // Enum to represent room status
+  enum RoomStatus { Vacant, Occupied, Unavailable }
+
+  // Struct to store room details
+  struct Room {
+    uint roomId; // Unique identifier for the room
+    uint pricePerNight; // Price per night for this room
+    RoomStatus status; // Current status of the room
+  }
+
+  // Mapping to store rooms and their details
+  mapping(uint => Room) public rooms;
+
+  // Address of the hotel owner who receives payments
+  address payable public owner;
+
+  // Event emitted when a room is booked
+  event RoomBooked(uint roomId, address renter);
+
+  // Modifier to restrict functions to the owner
+  modifier onlyOwner() {
+    require(msg.sender == owner, "Only owner can call this function");
+    _;
+  }
+
+  // Constructor to initialize rooms and owner address
+  constructor(address payable _owner) {
+    owner = _owner;
+  }
+
+  // Function to add a room with its price
+  function addRoom(uint roomId, uint pricePerNight) public onlyOwner {
+    rooms[roomId] = Room(roomId, pricePerNight, RoomStatus.Vacant);
+  }
+
+  // Function to book a room (requires payment)
+  function bookRoom(uint roomId) public payable {
+    Room storage room = rooms[roomId];
+    require(room.status == RoomStatus.Vacant, "Room is not vacant");
+    require(msg.value >= room.pricePerNight, "Insufficient payment sent");
+
+    room.status = RoomStatus.Occupied;
+    owner.transfer(msg.value); // Transfer payment to owner
+
+    emit RoomBooked(roomId, msg.sender);
+  }
+
+  // Function to check room availability
+  function isRoomVacant(uint roomId) public view returns (bool) {
+    return rooms[roomId].status == RoomStatus.Vacant;
+  }
+}

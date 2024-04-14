@@ -1,0 +1,96 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+// contract AddressBook {
+//   // Mapping to store alias names to Ethereum addresses
+//   mapping(string => address payable) public addressBook;
+
+//   // Event emitted when a new entry is added
+//   event AddressAdded(string aliasName, address payable ethereumAddress);
+
+//   // Function to add an entry to the address book
+//   function addEntry(string memory aliasName, address payable ethereumAddress) public {
+//     addressBook[aliasName] = ethereumAddress;
+//     emit AddressAdded(aliasName, ethereumAddress);
+//   }
+
+//   // Function to retrieve the Ethereum address for a given alias
+//   function getAddress(string memory aliasName) public view returns (address payable) {
+//     return addressBook[aliasName];
+//   }
+// }
+
+
+
+// contract AddressBook {
+//     // Struct to represent an entry in the address book
+//     struct Entry {
+//         address ethAddress;
+//         string aliasName;
+//     }
+
+//     // Mapping to store entries in the address book
+//     mapping(address => Entry) public addressBook;
+
+//     // Function to add an entry to the address book
+//     function addEntry(address _ethAddress, string memory _alias) public {
+//         addressBook[_ethAddress] = Entry(_ethAddress, _alias);
+//     }
+
+//     // Function to get the alias associated with an Ethereum address
+//     function getAlias(address _ethAddress) public view returns (string memory) {
+//         return addressBook[_ethAddress].aliasName;
+//     }
+
+// }
+
+
+
+contract AddressBook {
+  // Mapping to store alias names to Ethereum addresses (using "nickName" instead)
+  mapping(string => address payable) public addressBook;
+
+  // Event emitted when a new entry is added
+  event AddressAdded(string nickName, address payable ethAddress);
+
+  // Function to add an entry to the address book
+  function addEntry(string memory nickName, address payable ethAddress) public {
+    addressBook[nickName] = ethAddress;
+    emit AddressAdded(nickName, ethAddress);
+  }
+
+  // Function to retrieve the Ethereum address for a given alias
+  function getAddress(string memory nickName) public view returns (address payable) {
+    return addressBook[nickName];
+  }
+
+}
+
+
+
+
+// contract AddressBook {
+//     // Struct to represent an entry in the address book
+//     struct Entry {
+//         address ethAddress;
+//         string aliasName;
+//     }
+
+//     // Array to store entries in the address book
+//     Entry[] public addressBook;
+
+//     // Function to add an entry to the address book
+//     function addEntry(address _ethAddress, string memory _alias) public {
+//         addressBook.push(Entry(_ethAddress, _alias));
+//     }
+
+//     // Function to get the alias associated with an Ethereum address
+//     function getAlias(address _ethAddress) public view returns (string memory) {
+//         for (uint256 i = 0; i < addressBook.length; i++) {
+//             if (addressBook[i].ethAddress == _ethAddress) {
+//                 return addressBook[i].aliasName;
+//             }
+//         }
+//         return "";
+//     }
+// }

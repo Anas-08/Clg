@@ -1,0 +1,67 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract WeeklyPayments {
+  // Address of the payer (who sends funds) -> x
+  address payable public payer;
+
+  // Address of the payee (who receives funds) -> y
+  address payable public payee;
+
+  // Amount to be sent per withdrawal (simulates weekly payment)
+  uint public paymentAmount;
+
+  // Minimum time to wait between withdrawals (simulates weekly interval)
+  uint public withdrawalInterval;
+
+  // Last withdrawal timestamp
+  uint public lastWithdrawalTime;
+
+  // Event emitted when funds are withdrawn by the payee
+  event FundsWithdrawn(uint amount, address recipient);
+
+  // Event emitted when the contract is topped up with funds by the payer
+  event ContractToppedUp(uint amount, address payer);
+
+  // Modifier to restrict functions to the payee
+  modifier onlyPayee() {
+    require(msg.sender == payee, "Only payee can call this function");
+    _;
+  }
+
+  // Modifier to restrict functions to the payer
+  modifier onlyPayer() {
+    require(msg.sender == payer, "Only payer can call this function");
+    _;
+  }
+
+  // Constructor to set payer, payee, payment amount, and withdrawal interval
+  constructor(
+    address payable _payer,
+    address payable _payee,
+    uint _paymentAmount,
+    uint _withdrawalInterval
+  ) {
+    payer = _payer;
+    payee = _payee;
+    paymentAmount = _paymentAmount;
+    withdrawalInterval = _withdrawalInterval;
+    lastWithdrawalTime = block.timestamp; // Set initial withdrawal time
+  }
+
+  // Function for the payee to withdraw accumulated funds
+  function withdrawFunds() public onlyPayee {
+    require(block.timestamp >= lastWithdrawalTime + withdrawalInterval, "Withdrawal interval not yet passed");
+    payable(payee).transfer(paymentAmount);
+    lastWithdrawalTime = block.timestamp; // Update last withdrawal time
+    emit FundsWithdrawn(paymentAmount, payee);
+  }
+
+  // Function for the payer to top up the contract with funds
+  function topUpContract() public payable onlyPayer {
+    emit ContractToppedUp(msg.value, payer);
+  }
+
+}
+ 
+  

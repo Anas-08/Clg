@@ -1,0 +1,52 @@
+[
+    {
+        "image":"./images/menshoes_1.jpg",
+        "name":"casual shoes",
+        "category":"men",
+        "price":900,
+        "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam deserunt earum provident quia enim ipsa corporis mollitia porro."
+    },
+    {
+        "image":"./images/kid_1.jpg",
+        "name":"Kid shoes",
+        "category":"kid",
+        "price":400,
+        "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam deserunt earum provident quia enim ipsa corporis mollitia porro."
+    },
+    {
+        "image":"./images/wheels_1.jpg",
+        "name":"Heels ",
+        "category":"women",
+        "price":1900,
+        "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam deserunt earum provident quia enim ipsa corporis mollitia porro."
+    },
+    {
+        "image":"./images/menshoes_2.jpg",
+        "name":"Formal shoes",
+        "category":"men",
+        "price":2900,
+        "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam deserunt earum provident quia enim ipsa corporis mollitia porro."
+    },
+    {
+        "image":"./images/menshoes_8.jpg",
+        "name":"sport shoes",
+        "category":"men",
+        "price":9000,
+        "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam deserunt earum provident quia enim ipsa corporis mollitia porro."
+    },
+    {
+        "image":"./images/wheels_2.jpg",
+        "name":"heels",
+        "category":"women",
+        "price":450,
+        "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam deserunt earum provident quia enim ipsa corporis mollitia porro."
+    },
+    {
+        "image":"./images/menshoes_7.jpg",
+        "name":"men shoes",
+        "category":"men",
+        "price":9900,
+        "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam deserunt earum provident quia enim ipsa corporis mollitia porro."
+    }
+
+]

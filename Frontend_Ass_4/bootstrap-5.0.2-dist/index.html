@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="./js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <!-- <script src="./jquery-3.7.1.slim.js"></script> -->
+    <!-- <script src="./jquery-3.7.1.js"></script> -->
+    <script src="./getJson.json"></script>
+
+</head>
+
+<body>
+
+    <div>
+        <!-- header Start -->
+        <header
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 px-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                <h3>Shoe House</h3>
+            </a>
+
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="./index.html" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark">Men's</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark">Women's</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark">Kid's</a></li>
+
+                <a href="./addToCart.html"> <button type="button" class="btn btn-outline-primary me-2">Add to
+                        Cart</button></a>
+                <button type="button" class="btn btn-outline-primary">Wishlist</button>
+            </ul>
+
+            <div class="col-md-3 text-end">
+                <button type="button" class="btn btn-primary me-2">Login</button>
+                <button type="button" class="btn btn-primary">Sign-up</button>
+            </div>
+        </header>
+        <!-- header end -->
+
+        <!-- crousel start -->
+        <div id="myCarousel" class="carousel slide pointer-event" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class=""
+                    aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"
+                    class="active" aria-current="true"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"
+                    class=""></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img class="bd-placeholder-img" width="100%" height="100%" src="./images/menshoes_1.jpg" alt="">
+
+                    <div class="container">
+                        <div class="carousel-caption text-start">
+                            <h1>Example headline.</h1>
+                            <p>Some representative placeholder content for the first slide of the carousel.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item active">
+                    <img class="bd-placeholder-img" width="100%" height="100%" src="./images/menshoes_2.jpg" alt="">
+
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>Another example headline.</h1>
+                            <p>Some representative placeholder content for the second slide of the carousel.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="bd-placeholder-img" width="100%" height="100%" src="./images/menshoes_4.jpg" alt="">
+
+                    <div class="container">
+                        <div class="carousel-caption text-end">
+                            <h1>One more for good measure.</h1>
+                            <p>Some representative placeholder content for the third slide of this carousel.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <!-- crousel end -->
+
+        <!-- category section start -->
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Category</h1>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container marketing py-4">
+
+            <!-- Three columns of text below the carousel -->
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <img class="bd-placeholder-img rounded-circle" width="140" height="140"
+                        src="./images/menshoes_7.jpg" alt="">
+
+                    <h2>Men's</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic voluptatum quae temporibus, eum
+                        soluta excepturi..</p>
+                    <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="./images/wheels_2.jpg"
+                        alt="">
+
+                    <h2>Womens's</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, architecto alias? Ea, placeat?
+                        Deserunt, corrupti!.</p>
+                    <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="./images/kid_1.jpg"
+                        alt="">
+
+                    <h2>Kid's</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quas maxime accusamus quod,
+                        possimus rerum.</p>
+                    <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+
+
+            <!-- START THE FEATURETTES -->
+
+            <hr class="featurette-divider">
+
+            <!-- /END THE FEATURETTES -->
+
+        </div>
+        <!-- category section end -->
+
+        <!-- content cart start -->
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Collections</h1>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 setJson">
+
+                    <!-- <div class="col border">
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            src="./images/menshoes_5.jpg" alt="">
+
+                        <div class="card-body">
+                            <h3>Casual Shoe</h3>
+                            <p>Category : men</p>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum earum
+                                est officia optio ut sapiente?.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
+
+                                </div>
+                                <small class="text-muted">Price : 800</small>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- content cart end -->
+
+    </div>
+
+</body>
+
+<script>
+
+    $(document).ready(function () {
+        $.getJSON("/getJson.json", function (data) {
+            console.log(data);
+
+        });
+    });
+
+    $(document).ready(function () {
+        // console.log("hii")
+        $.getJSON("./getJson.json", function (data) {
+            // console.log(data);
+
+            console.log("hii")
+            $.each(data, function (key, data) {
+                // console.log(data);
+                // console.log("hii")
+                $(".setJson").append(`
+
+                <div class="col border">
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            src="${data.image}" alt="">
+
+                        <div class="card-body">
+                            <h3>${data.name}</h3>
+                            <p>Category : ${data.category}</p>
+                            <p class="card-text">${data.description}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
+
+                                </div>
+                                <small class="text-muted">Price : ${data.price}</small>
+                            </div>
+                        </div>
+                    </div>
+                
+                `);
+            });
+        });
+    });
+
+
+</script>
+
+
+</html>
